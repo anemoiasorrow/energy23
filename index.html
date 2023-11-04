@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Music Player</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0f0f0f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    
+        #music-container {
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            text-align: center;
+        }
+    
+        audio {
+            width: 100%;
+            height: 120px; /* Increased height for a longer player */
+        }
+    
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+    
+        button:hover {
+            background-color: #0075f3; /* Darker shade on hover */
+            transform: scale(1.05); /* Slightly larger size on hover */
+        }
+
+        ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    ul li {
+        margin: 25px;
+        text-decoration: none;
+    }
+
+    ul li a {
+        margin: 10px 0px;
+        transition: color 0.2s;
+        color: #007bff; /* Default dark blue color */
+        text-decoration: none;
+
+
+    }
+
+    ul li a:hover {
+        cursor: pointer;
+        color: rgb(0, 255, 179); /* Blue color on hover */
+
+    }
+
+    </style>
+    
+</head>
+<body>
+    <div id="music-container">
+        <h1 style="color: #fff;">-------------------------------------------</h1>
+        <audio id="music-player" controls controlsList="nodownload">
+            <source src="song1.mp3" type="audio/mpeg">
+        </audio>
+        <button id="play-button">Play</button>
+        <button id="pause-button">Pause</button>
+        <ul>
+            <li><a href="so_bold.mp3" class="song-link">So Bold</a></li>
+            <li><a href="energy.mp3" class="song-link">Energy</a></li>
+            <li><a href="middle_of_the_night.mp3" class="song-link">Middle of the Night</li>
+            <li><a href="serious_bliss.mp3" class="song-link">Serious Bliss</a></li>
+            <li><a href="one_of_a_kind.mp3" class="song-link">One of a Kind</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const musicPlayer = document.getElementById('music-player');
+        const playButton = document.getElementById('play-button');
+        const pauseButton = document.getElementById('pause-button');
+        const songLinks = document.querySelectorAll('.song-link');
+
+        playButton.addEventListener('click', () => {
+            musicPlayer.play();
+        });
+
+        pauseButton.addEventListener('click', () => {
+            musicPlayer.pause();
+        });
+
+        songLinks.forEach((link, index) => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const songSource = link.getAttribute('href');
+                musicPlayer.src = songSource;
+                musicPlayer.load();
+                musicPlayer.play();
+            });
+        });
+    </script>
+</body>
+</html>
